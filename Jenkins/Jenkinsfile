@@ -1,0 +1,49 @@
+pipeline{
+    agent any
+    environment {
+        projetoTeste = "$WORKSPACE/Jenkins"
+    }
+
+    stages{
+        stage(''){
+            steps{
+                echo''
+                dir("$projetoTeste"){
+                    sh'gradle wrapper'
+                }
+            }
+        }
+        stage('') {
+            steps{
+                echo''
+                dir("$projetoTeste"){
+                    sh'$projetoTeste/gradlew test'
+                }
+            }
+        }
+        stage('build') {
+            steps {
+                echo''
+                dir("$projetoTeste") {
+                    sh'$projetoTeste/gradlew lintDebug'
+                }
+            }
+        }
+        stage('build apk'){
+            steps{
+                echo''
+                dir("$projetoTeste") {
+                    sh'$projetoTeste/gradlew assembleDebug'
+                }
+            }
+        }
+        stage(''){
+            steps{
+                echo''
+                arquiveArtifacts artifacts: '**/app-release .apk\'', fingerprint: true, allowEmptyArquive: true
+                arquiveArtifacts artifacts: '**/app-release-unsigned.apk', fingerprint: true, allowEmptyArquive: false
+                echo'Salvando tag'
+            }
+        }
+    }
+}
