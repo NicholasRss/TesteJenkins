@@ -39,7 +39,7 @@ pipeline{
         }
         stage(''){
             steps{
-                echo''
+                echo'oh shit'
                 arquiveArtifacts artifacts: '**/app-release .apk\'', fingerprint: true, allowEmptyArquive: true
                 arquiveArtifacts artifacts: '**/app-release-unsigned.apk', fingerprint: true, allowEmptyArquive: false
                 echo'Salvando tag'
