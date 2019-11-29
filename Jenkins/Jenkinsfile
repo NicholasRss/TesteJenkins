@@ -5,7 +5,7 @@ pipeline{
     }
 
     stages{
-        stage(''){
+        stage('wrapper'){
             steps{
                 echo''
                 dir("$projetoTeste"){
@@ -13,27 +13,19 @@ pipeline{
                 }
             }
         }
-        stage('') {
+        stage('Test') {
             steps{
-                echo''
+                echo'kkkkkk'
                 dir("$projetoTeste"){
-                    sh'$projetoTeste/gradlew test'
-                }
-            }
-        }
-        stage('build') {
-            steps {
-                echo''
-                dir("$projetoTeste") {
-                    sh'$projetoTeste/gradlew lintDebug'
+                    sh'./gradlew test'
                 }
             }
         }
         stage('build apk'){
             steps{
-                echo''
+                echo'kkkk'
                 dir("$projetoTeste") {
-                    sh'$projetoTeste/gradlew assembleDebug'
+                    sh'./gradlew assembleRelease'
                 }
             }
         }
