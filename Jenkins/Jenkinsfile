@@ -31,8 +31,8 @@ pipeline{
         }
         stage('Arquivando APK'){
             steps{
-                echo'arquivando apk gerado'
-                arquiveArtifacts artifacts: '**/app-release-unsigned.apk', fingerprint: true, allowEmptyArquive: true
+                echo'arquivando apk gerador'
+                arquiveArtifacts artifacts: '**/app-release-unsigned.apk', fingerprint: true, allowEmptyArquive: false
                 echo'Salvando tag'
             }
         }
